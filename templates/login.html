@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Admin Login</h2>
+
+<form method="POST" style="display:flex;flex-direction:column;gap:15px;max-width:300px;">
+<input name="username" placeholder="Username" required>
+<input type="password" name="password" placeholder="Password" required>
+<button class="btn">Login</button>
+</form>
+
+{% endblock %}

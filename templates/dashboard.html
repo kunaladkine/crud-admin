@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card mb-4 text-center">
+  <h2>📊 Admin Dashboard</h2>
+  <h4>Total Students: {{ total_students }}</h4>
+</div>
+
+<div class="card mx-auto" style="max-width:700px;">
+  <canvas id="courseChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+new Chart(document.getElementById('courseChart'), {
+  type:'bar',
+  data:{
+    labels: {{ labels|tojson }},
+    datasets:[{
+      label:'Students per Course',
+      data: {{ values|tojson }},
+      borderWidth:2,
+      backgroundColor:'rgba(75,192,192,0.4)',
+      borderColor:'#007bff'
+    }]
+  },
+  options:{responsive:true,scales:{y:{beginAtZero:true}}}
+});
+</script>
+
+{% endblock %}

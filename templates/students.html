@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+<h3>Students List</h3>
+
+<form method="GET" class="d-flex gap-2 my-3">
+  <input class="form-control" name="search" value="{{ search }}" placeholder="Search by name/course">
+  <button class="btn btn-light">Search</button>
+</form>
+
+<table class="table table-hover table-bordered align-middle text-center">
+  <thead class="table-dark">
+    <tr><th>Name</th><th>Course</th><th>Action</th></tr>
+  </thead>
+  <tbody>
+    {% for s in students %}
+    <tr>
+      <td>{{s.name}}</td>
+      <td>{{s.course}}</td>
+      <td>
+        <a href="/edit/{{s._id}}" class="btn btn-sm btn-warning">Edit</a>
+        <a href="/delete/{{s._id}}" class="btn btn-sm btn-danger" onclick="return confirm('Delete?')">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<!-- Pagination -->
+<div class="d-flex justify-content-center gap-3 mt-3">
+  {% if page > 1 %}
+    <a class="btn btn-light btn-sm" href="?page={{page-1}}&search={{search}}">⬅ Prev</a>
+  {% endif %}
+  {% if page < total_pages %}
+    <a class="btn btn-light btn-sm" href="?page={{page+1}}&search={{search}}">Next ➡</a>
+  {% endif %}
+</div>
+</div>
+
+{% endblock %}
