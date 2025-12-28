@@ -153,7 +153,5 @@ def dashboard():
         total_students=total_students
     )
 
-
-# Do nothing for Vercel
-def handler(request, *args, **kwargs):
-    return app(request, *args, **kwargs)
+if __name__ == "__main__":
+    app.run()
