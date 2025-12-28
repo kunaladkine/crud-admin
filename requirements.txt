@@ -1,6 +1,7 @@
 Flask
 pymongo
 dnspython
-bcrypt
 Werkzeug
 gunicorn
+python-dotenv
+bcrypt
