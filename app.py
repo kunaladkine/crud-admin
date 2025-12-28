@@ -11,6 +11,7 @@ app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
 
 # MongoDB Connection
+MONGO_URI = os.getenv("MONGO_URI")
 client = MongoClient(os.getenv("MONGO_URI"))  # Local database
 db = client["studentsdb"]
 collection = db["students"]
@@ -153,5 +154,6 @@ def dashboard():
     )
 
 
-if __name__ == "__main__":
-    app.run()
+# Do nothing for Vercel
+def handler(request, *args, **kwargs):
+    return app(request, *args, **kwargs)
